@@ -161,6 +161,9 @@ admin:
   annotations: {}
   #  service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
   labels: {}
+  # By default local admin API URL uses the "localhost" in URL path
+  # If you want to use an IP address instead, set it here, e.g. "127.0.0.1", "::1"
+  # localIP: "127.0.0.1"
 
   http:
     # Enable plaintext HTTP listen for the admin API

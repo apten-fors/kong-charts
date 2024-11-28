@@ -426,12 +426,13 @@ Return the admin API service name for service discovery
 Return the local admin API URL, preferring HTTPS if available
 */}}
 {{- define "kong.adminLocalURL" -}}
+  {{- $localIP := default "localhost" .Values.admin.localIP -}}
   {{- if .Values.admin.tls.enabled -}}
-https://localhost:{{ .Values.admin.tls.containerPort }}
+https://{{ $localIP }}:{{ .Values.admin.tls.containerPort }}
   {{- else if .Values.admin.http.enabled -}}
-http://localhost:{{ .Values.admin.http.containerPort }}
+http://{{ $localIP }}:{{ .Values.admin.http.containerPort }}
   {{- else -}}
-http://localhost:9999 # You have no admin listens! The controller will not work unless you set .Values.admin.http.enabled=true or .Values.admin.tls.enabled=true!
+http://{{ $localIP }}:9999 # You have no admin listens! The controller will not work unless you set .Values.admin.http.enabled=true or .Values.admin.tls.enabled=true!
   {{- end -}}
 {{- end -}}
 
